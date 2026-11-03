@@ -1,0 +1,4 @@
+Model,Best Parameters,CV Train Recall,CV Validation Recall,Train Validation Gap,Diagnosis,Test Accuracy,Test Precision,Test Recall,Test F1,Test ROC-AUC
+SVM,"{'classifier__C': 0.1, 'classifier__class_weight': 'balanced', 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",0.8355,0.8355,0.0,Reasonable bias-variance balance,0.6941,0.4575,0.8209,0.5876,0.8093
+Random Forest,"{'classifier__class_weight': 'balanced', 'classifier__max_depth': 5, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 5, 'classifier__n_estimators': 200}",0.8237,0.8054,0.0184,Reasonable bias-variance balance,0.7395,0.506,0.7861,0.6157,0.8391
+Decision Tree,"{'classifier__class_weight': 'balanced', 'classifier__criterion': 'entropy', 'classifier__max_depth': 5, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 2}",0.8249,0.7933,0.0316,Reasonable bias-variance balance,0.7544,0.5262,0.7513,0.6189,0.8375

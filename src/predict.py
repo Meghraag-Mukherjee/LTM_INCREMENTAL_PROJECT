@@ -2,7 +2,7 @@ import pandas as pd
 import joblib
 
 
-MODEL_PATH = "models/churn_pipeline.joblib"
+MODEL_PATH = "models/churn_v3.joblib"
 
 
 # Load trained pipeline
