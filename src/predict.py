@@ -1,51 +1,63 @@
-import pandas as pd
 import joblib
+import pandas as pd
+
+# Import required for loading the persisted pipeline.
+from src.features import add_engineered_features
 
 
-MODEL_PATH = "models/churn_v3.joblib"
+MODEL_PATH = "models/churn_final.joblib"
 
-
-# Load trained pipeline
 model = joblib.load(MODEL_PATH)
 
 
 def predict(customer_data):
     """
-    Predict customer churn.
+    Predict whether a customer will churn.
 
     Parameters
     ----------
     customer_data : dict
-        Customer information.
+        One customer's feature values.
 
     Returns
     -------
     dict
-        Predicted class and churn probability.
+        Prediction, label, and churn probability.
     """
 
-    df = pd.DataFrame([customer_data])
+    customer_df = pd.DataFrame(
+        [customer_data]
+    )
 
-    # Match training cleaning
-    if "TotalCharges" in df.columns:
-        df["TotalCharges"] = pd.to_numeric(
-            df["TotalCharges"],
-            errors="coerce"
-        )
+    prediction = int(
+        model.predict(customer_df)[0]
+    )
 
-    prediction = model.predict(df)[0]
-
-    probability = model.predict_proba(df)[0][1]
+    churn_probability = float(
+        model.predict_proba(
+            customer_df
+        )[0][1]
+    )
 
     return {
-        "churn_prediction": int(prediction),
-        "churn_probability": float(probability)
+        "churn_prediction": prediction,
+
+        "churn_label": (
+            "Yes"
+            if prediction == 1
+            else "No"
+        ),
+
+        "churn_probability": round(
+            churn_probability,
+            4
+        )
     }
 
 
 if __name__ == "__main__":
 
-    customer = {
+    sample_customer = {
         "gender": "Female",
         "SeniorCitizen": 0,
         "Partner": "Yes",
@@ -67,6 +79,9 @@ if __name__ == "__main__":
         "TotalCharges": 966.00
     }
 
-    result = predict(customer)
+    result = predict(
+        sample_customer
+    )
 
+    print("\nFinal churn prediction:")
     print(result)

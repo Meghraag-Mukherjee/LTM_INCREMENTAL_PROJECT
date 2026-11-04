@@ -1,0 +1,4 @@
+Model,CV Train Recall,CV Validation Recall,CV Recall Gap,CV ROC-AUC,Test Accuracy,Test Precision,Test Recall,Test F1,Test ROC-AUC
+Day 3 Champion,0.8355,0.8355,0.0,0.8304,0.6941,0.4575,0.8209,0.5876,0.8093
+Random Forest + Features + PCA,0.9694,0.7385,0.2309,0.8366,0.7601,0.535,0.7353,0.6194,0.8343
+XGBoost + Features + PCA,0.9406,0.7244,0.2162,0.8361,0.7502,0.5214,0.7166,0.6036,0.833
